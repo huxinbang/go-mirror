@@ -33,7 +33,8 @@ func main() {
 		fmt.Println("usage: go-mirror get [<args>]")
 		return
 	}
-	source := os.Args[2]
+	source := os.Args[len(os.Args)-1]
+
 	go_path := os.Getenv("GOPATH")
 
 	usr, err := user.Current()
@@ -54,8 +55,8 @@ func main() {
 		}
 	}
 
-	// config_path := home_dir + "/.go-mirror/config.json"
-	config_path := "config.json"
+	config_path := home_dir + "/.go-mirror/config.json"
+	// config_path := "config.json"
 
 	if !pathExists(config_path) {
 		log.Printf("can't find %s\n", config_path)
@@ -77,10 +78,13 @@ func main() {
 			source_parent_path := path.Dir(source_path)
 
 			if _, err := os.Stat(mirror_path); os.IsNotExist(err) {
-				log.Printf(">Exec: go get -v %s\n", cfg.Mirror)
-				cmd := exec.Command("go", "get", "-v", cfg.Mirror)
-				stdout, _ := cmd.CombinedOutput()
-				log.Printf(string(stdout))
+				os.Args[len(os.Args)-1] = cfg.Mirror
+				mirror_args := os.Args[1:len(os.Args)]
+				log.Print(">Exec test: go ", mirror_args)
+				cmd := exec.Command("go", mirror_args...)
+				cmd.Run()
+				// stdout, _ := cmd.CombinedOutput()
+				// log.Printf(string(stdout))
 
 			} else {
 				log.Printf(">Info: mirror already exists: %s\n", mirror_path)
