@@ -1,0 +1,23 @@
+{
+    "Version":"1.0.0",
+    "Description":"For golang.",
+    "Mirrors":[
+        { "Source":"golang.org/x/tools", "Mirror":"github.com/golang/tools" }
+        ,{ "Source":"golang.org/x/lint", "Mirror":"github.com/golang/lint" }
+        ,{ "Source":"google.golang.org/genproto", "Mirror":"github.com/google/go-genproto" }
+        ,{ "Source":"golang.org/x/sync", "Mirror":"github.com/golang/sync" }
+        ,{ "Source":"golang.org/x/oauth2", "Mirror":"github.com/golang/oauth2" }
+        ,{ "Source":"golang.org/x/crypto", "Mirror":"github.com/golang/crypto" }
+        ,{ "Source":"golang.org/x/sys", "Mirror":"github.com/golang/sys" }
+        ,{ "Source":"golang.org/x/net", "Mirror":"github.com/golang/net" }
+        ,{ "Source":"golang.org/x/mobile", "Mirror":"github.com/golang/mobile" }
+        ,{ "Source":"golang.org/x/exp", "Mirror":"github.com/golang/exp" }
+        ,{ "Source":"golang.org/x/text", "Mirror":"github.com/golang/text" }
+        ,{ "Source":"golang.org/x/image", "Mirror":"github.com/golang/image" }
+        ,{ "Source":"golang.org/x/perf", "Mirror":"github.com/golang/perf" }
+        ,{ "Source":"golang.org/x/review", "Mirror":"github.com/golang/review" }
+        ,{ "Source":"golang.org/x/time", "Mirror":"github.com/golang/time" }
+        ,{ "Source":"google.golang.org/grpc", "Mirror":"github.com/grpc/grpc-go" }
+    ]
+
+}
