@@ -83,8 +83,6 @@ func main() {
 				log.Print(">Exec test: go ", mirror_args)
 				cmd := exec.Command("go", mirror_args...)
 				cmd.Run()
-				// stdout, _ := cmd.CombinedOutput()
-				// log.Printf(string(stdout))
 
 			} else {
 				log.Printf(">Info: mirror already exists: %s\n", mirror_path)
@@ -93,20 +91,20 @@ func main() {
 			if _, err := os.Stat(source_parent_path); os.IsNotExist(err) {
 				log.Printf(">Exec: mkdir -p %s\n", source_parent_path)
 				cmd := exec.Command("mkdir", "-p", source_parent_path)
-				stdout, err := cmd.CombinedOutput()
+				cmd.Run()
 
-				if err != nil {
-					println(err.Error())
-					return
-				}
-				print(string(stdout))
 			} else {
 				log.Printf(">Info: source parent already exists: %s\n", source_parent_path)
 			}
 
+			if !pathExists(mirror_path) {
+				log.Printf("prepare mirror %s failed.\n", mirror_path)
+				return
+			}
+
 			if _, err := os.Stat(source_path); os.IsNotExist(err) {
-				log.Printf(">Exec: ln -s %s %s\n", mirror_path, source_path)
-				cmd := exec.Command("ln", "-s", mirror_path, source_path)
+				log.Printf(">Exec: mv %s %s\n", mirror_path, source_path)
+				cmd := exec.Command("mv", mirror_path, source_path)
 				stdout, err := cmd.CombinedOutput()
 
 				if err != nil {
